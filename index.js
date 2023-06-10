@@ -30,6 +30,7 @@ async function run() {
    const classesCollection = client.db("sportsZoneDb").collection("classes");
    const instructorsCollection = client.db("sportsZoneDb").collection("instructors");
    const reviewsCollection = client.db("sportsZoneDb").collection("reviews");
+   const cartCollection = client.db("sportsZoneDb").collection("carts");
    
 
    app.get('/classes', async (req, res) => {
@@ -48,6 +49,16 @@ async function run() {
     const result = await reviewsCollection.find().toArray();
     res.send(result);
    });
+
+    //cart collection
+    app.post('/carts', async (req,res) => {
+        const item =  req.body;
+        console.log(item);
+        const result = await cartCollection.insertOne(item);
+        res.send(result);
+    });
+   
+
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
