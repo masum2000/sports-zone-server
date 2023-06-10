@@ -28,6 +28,8 @@ async function run() {
     await client.connect();
 
    const classesCollection = client.db("sportsZoneDb").collection("classes");
+   const instructorsCollection = client.db("sportsZoneDb").collection("instructors");
+   const reviewsCollection = client.db("sportsZoneDb").collection("reviews");
    
 
    app.get('/classes', async (req, res) => {
@@ -35,6 +37,17 @@ async function run() {
     res.send(result);
    })
 
+
+   app.get('/instructors', async (req, res) => {
+    const result = await instructorsCollection.find().toArray();
+    res.send(result);
+   })
+
+
+   app.get('/reviews', async (req, res) => {
+    const result = await reviewsCollection.find().toArray();
+    res.send(result);
+   });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
