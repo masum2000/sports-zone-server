@@ -27,30 +27,35 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
+   const usersCollection = client.db("sportsZoneDb").collection("users");
    const classesCollection = client.db("sportsZoneDb").collection("classes");
    const instructorsCollection = client.db("sportsZoneDb").collection("instructors");
    const reviewsCollection = client.db("sportsZoneDb").collection("reviews");
    const cartCollection = client.db("sportsZoneDb").collection("carts");
-   
 
+//    users related apis 
+  app.
+
+
+//   classes related apis
    app.get('/classes', async (req, res) => {
     const result = await classesCollection.find().toArray();
     res.send(result);
    })
 
-
+// instructors related apis
    app.get('/instructors', async (req, res) => {
     const result = await instructorsCollection.find().toArray();
     res.send(result);
    })
 
-
+// reviews related apis
    app.get('/reviews', async (req, res) => {
     const result = await reviewsCollection.find().toArray();
     res.send(result);
    });
 
-    //cart collection
+//cart collection
     app.get('/carts', async (req, res) => {
         const email = req.query.email;
         if(!email){
