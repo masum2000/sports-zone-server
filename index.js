@@ -34,7 +34,11 @@ async function run() {
    const cartCollection = client.db("sportsZoneDb").collection("carts");
 
 //    users related apis 
-  app.
+  app.post('/users', async (req, res) => {
+    const user = req.body;
+    const result = await usersCollection.insertOne(user);
+    res.send(result);
+  })
 
 
 //   classes related apis
