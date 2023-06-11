@@ -33,7 +33,14 @@ async function run() {
    const reviewsCollection = client.db("sportsZoneDb").collection("reviews");
    const cartCollection = client.db("sportsZoneDb").collection("carts");
 
-//    users related apis 
+//    users related apis
+
+  app.get('/users', async (req, res) => {
+    const result = await usersCollection.find().toArray();
+    res.send(result);
+  })
+
+
   app.post('/users', async (req, res) => {
     const user = req.body;
     console.log(user);
