@@ -52,7 +52,12 @@ async function run() {
     }
     const result = await usersCollection.insertOne(user);
     res.send(result);
-  })
+  });
+
+//   create an admin 
+   app.patch('users/admin/:id', async(req, res) => {
+    const id = req.params.id;
+   })
 
 
 //   classes related apis
