@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const port = process.env.PORT || 5000;
 
@@ -32,6 +33,15 @@ async function run() {
    const instructorsCollection = client.db("sportsZoneDb").collection("instructors");
    const reviewsCollection = client.db("sportsZoneDb").collection("reviews");
    const cartCollection = client.db("sportsZoneDb").collection("carts");
+
+
+  app.post('/jwt', (req,res)=>{
+    const user = req.body;
+    const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' })
+    res.send({ token });
+  })
+
+
 
 //    users related apis
 
